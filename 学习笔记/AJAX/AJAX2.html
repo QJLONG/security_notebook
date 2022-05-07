@@ -1,0 +1,40 @@
+<!--
+ * @Description: 
+ * @Autor: hummer
+ * @Date: 2022-04-29 19:53:09
+ * @LastEditors: hummer
+ * @LastEditTime: 2022-04-29 20:13:21
+-->
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+
+window.onload = function(){
+    var b = document.getElementById("input");
+    b.onclick=function(){
+
+        var url = "server.php";
+        var xhr = new XMLHttpRequest();
+        // xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+        xhr.open('POST',url,true);
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState==4 && xhr.status==200){
+                console.log(xhr.responseText);
+                document.getElementById("myDiv").innerHTML=xhr.responseText;
+            }
+        }
+        xhr.send();
+    }
+    
+}
+
+</script>
+</head>
+<body>
+    <button id="input">发起请求
+    </button>
+    <div id="myDiv"></div>
+</body>
+</html>
