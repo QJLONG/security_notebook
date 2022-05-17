@@ -1,6 +1,6 @@
-## Linux系统PS命令
+## Linux系统命令
 
-
+### PS
 
 -aux：显示所有包含其他使用者的进程
 
@@ -64,4 +64,36 @@ ps命令的用法：
 * -u 显示指定用户的进程 如 ```ps -u```
 
 
+
+### dpkg
+
+* -s：查看安装包的信息（是否已经安装）
+
+
+
+### 查看内核版本
+
+more /ect/os-release
+
+
+
+### linux口令强化
+
+```
+/etc/login.defs
+PASS_MAX_DAYS 60  # 设置密码最长使用天数
+PASS_MIN_DAYS 2      # 设置密码最短使用天数
+
+```
+
+```
+/etc/security/pwquality.comf
+minlen = 9
+minclass = 2 # 最少字符类数
+maxrepeat = 2	# 最大连续相同字符的出现次数
+lcredit = -1	# 最少包含一个小写字母
+ucredit = -1	# 最少包含一个大写字母
+dcredit = -1	# 最少包含一个数字
+ocredit = -1	# 最少包含一个其他字符
+```
 
