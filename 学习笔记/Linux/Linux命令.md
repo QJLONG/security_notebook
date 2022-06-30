@@ -1,5 +1,13 @@
 ### Linux系统常用命令
 
+#### 查看发行版本
+
+```shell
+cat /etc/*-release
+```
+
+
+
 #### ls
 
 ```shell

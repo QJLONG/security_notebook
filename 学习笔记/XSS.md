@@ -1,4 +1,4 @@
-## Cross Site Scripting
+Cross Site Scripting
 
 一句话，XSS就是在用户的浏览器中执行攻击者自己定制的脚本。
 
@@ -255,16 +255,6 @@ dog_cat.jpg "onclick="alert(/xss/)"&submit=下载
 pic=dog_cat.jpg" accesskey="x" onclick="alert(/xss/)&submit=下载
 ```
 
-![](https://hummer-vin.oss-cn-beijing.aliyuncs.com/images/20220519145006.png)
-
-各种浏览器的快捷键
-
-![](https://hummer-vin.oss-cn-beijing.aliyuncs.com/images/20220519145134.png)
-
-触发快捷键即可弹出xss窗口
-
-![](https://hummer-vin.oss-cn-beijing.aliyuncs.com/images/20220519145220.png)
-
 
 
 ### svg标签
@@ -274,3 +264,13 @@ pic=dog_cat.jpg" accesskey="x" onclick="alert(/xss/)&submit=下载
 ### 结点属性 
 
 onfocus=alert(1337) autofucus=""
+
+### XSS过滤绕过
+
+* HTML实体转义（可以通过BurpSuite）
+
+* 通过jsfuck  
+
+  在线工具：```http://www.jsfuck.com/```
+
+* JavaScript中JSON.stringify()函数对双引号和反斜杠进行了转义，但是并没有对`<`,`>`,`'`,`/`进行转义
